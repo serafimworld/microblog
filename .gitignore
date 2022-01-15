@@ -1,2 +1,3 @@
 /my_venv_flask
 __pycache__
+app.db
