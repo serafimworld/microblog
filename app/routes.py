@@ -10,7 +10,6 @@ from app.forms import LoginForm
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'art'}
     posts = [
         {
             'author': {'username': 'John'},
