@@ -40,3 +40,4 @@ nosetests.xml
 
 app.db
 microblog.log*
+logs
