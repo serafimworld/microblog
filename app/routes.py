@@ -26,18 +26,17 @@ def index():
         db.session.commit()
         flash('Your post is now live!')
         return redirect(url_for('index'))
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Ипполит'},
-            'body': 'Какая гадость эта ваша заливная рыба!!!'
-        }
-    ]
+    posts = current_user.followed_posts().all()
     return render_template('index.html', title='Home Page', form=form,
                            posts=posts)
+
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('index.html', title='Explore', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
